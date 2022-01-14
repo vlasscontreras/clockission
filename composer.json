@@ -1,0 +1,21 @@
+{
+    "name": "vlasscontreras/clockission",
+    "description": "Clockify to Mission Timecard",
+    "type": "library",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "VlassContreras\\Clockission\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vlass Contreras",
+            "email": "17748144+vlasscontreras@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
