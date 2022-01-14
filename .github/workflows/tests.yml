@@ -1,0 +1,33 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.0]
+
+    steps:
+    - name: Checkout 🛎
+      uses: actions/checkout@v2
+
+    - name: Cache Composer dependencies 📦
+      uses: actions/cache@v2
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install Dependencies 👨🏻‍💻
+      uses: php-actions/composer@v6
+      with:
+        php_version: ${{ matrix.php }}
+
+    - name: Run linters 👀
+      run: |
+        composer lint:phpcs
+
+    - name: Run tests 🧪
+      run: |
+        ./vendor/bin/phpunit
