@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Parsers;
+namespace Tests\Unit\Csv;
 
 use PHPUnit\Framework\TestCase;
 use VlassContreras\Clockission\Csv\Parser;
