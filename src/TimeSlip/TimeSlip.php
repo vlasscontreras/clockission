@@ -28,9 +28,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * Get the time slip activity type
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getActivityType(): string
     {
@@ -38,9 +36,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * Get the time entry description
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getDescription(): string
     {
@@ -48,9 +44,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * Get the time entry date
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getDate(): string
     {
@@ -62,9 +56,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * Get the time entry hours
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getHours(): string
     {
@@ -76,9 +68,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * Get the team ID
-     *
-     * @return int
+     * @inheritdoc
      */
     public function getTeamId(): int
     {
