@@ -4,41 +4,27 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\TimeSlip;
 
-use VlassContreras\Clockission\Contracts\Arrayable;
-use VlassContreras\Clockission\DateTime\Date;
-use VlassContreras\Clockission\DateTime\Time;
+use VlassContreras\Clockission\Contracts\MissionSlip;
 
-class TimeSlip implements Arrayable
+class TimeSlip implements MissionSlip
 {
-    /**
-     * Activity type
-     *
-     * @var string
-     */
-    protected string $activityType;
-
-    /**
-     * Activity description
-     *
-     * @var string
-     */
-    protected string $description;
-
     /**
      * Set up time entry
      *
+     * @param string|null $activityType
      * @param string|null $description
      * @param string|null $date
-     * @param float|null  $hours
+     * @param string|null  $hours
      * @param int         $teamId
      */
     public function __construct(
-        string $description,
+        protected string $activityType,
+        protected string $description,
         protected ?string $date,
-        protected ?float $hours = 0,
+        protected ?string $hours,
         protected ?int $teamId = 0
     ) {
-        $this->parseDescription($description);
+        //
     }
 
     /**
@@ -72,7 +58,7 @@ class TimeSlip implements Arrayable
             return date('Y-m-d');
         }
 
-        return Date::toIso8601Date($this->date);
+        return $this->date;
     }
 
     /**
@@ -83,10 +69,10 @@ class TimeSlip implements Arrayable
     public function getHours(): string
     {
         if (empty($this->hours)) {
-            return Time::decimalToHourMinute(0);
+            return '0:00';
         }
 
-        return Time::decimalToHourMinute($this->hours);
+        return $this->hours;
     }
 
     /**
@@ -96,7 +82,7 @@ class TimeSlip implements Arrayable
      */
     public function getTeamId(): int
     {
-        if (empty($this->hours)) {
+        if (empty($this->teamId)) {
             return 0;
         }
 
@@ -117,22 +103,5 @@ class TimeSlip implements Arrayable
             'hours'         => $this->getHours(),
             'team_id'       => $this->getTeamId(),
         ];
-    }
-
-    /**
-     * Parse description
-     *
-     * @param string $description
-     */
-    protected function parseDescription(string $description)
-    {
-        preg_match('/^(.[^:]+): (.*)$/', $description, $matches);
-
-        if (count($matches) !== 3) {
-            throw new \InvalidArgumentException('Invalid description format. Expected: "type: description"');
-        }
-
-        $this->activityType = $matches[1];
-        $this->description = $matches[2];
     }
 }
