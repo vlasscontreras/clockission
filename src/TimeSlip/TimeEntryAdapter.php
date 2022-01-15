@@ -37,7 +37,7 @@ class TimeEntryAdapter implements MissionSlip
      *
      * @var float|null
      */
-    protected ?float $hours;
+    protected ?float $timeLogged;
 
     /**
      * Entry team ID
@@ -54,7 +54,7 @@ class TimeEntryAdapter implements MissionSlip
     public function __construct(ClockifyEntry $entry)
     {
         $this->date = $entry->getDate();
-        $this->hours = $entry->getHours();
+        $this->timeLogged = $entry->getHours();
         $this->parseDescription($entry->getDescription());
     }
 
@@ -97,13 +97,13 @@ class TimeEntryAdapter implements MissionSlip
      *
      * @return string
      */
-    public function getHours(): string
+    public function getTimeLogged(): string
     {
-        if (empty($this->hours)) {
+        if (empty($this->timeLogged)) {
             return Time::decimalToHourMinute(0);
         }
 
-        return Time::decimalToHourMinute($this->hours);
+        return Time::decimalToHourMinute($this->timeLogged);
     }
 
     /**
@@ -113,7 +113,7 @@ class TimeEntryAdapter implements MissionSlip
      */
     public function getTeamId(): int
     {
-        if (empty($this->hours)) {
+        if (empty($this->teamId)) {
             return 0;
         }
 
@@ -131,7 +131,7 @@ class TimeEntryAdapter implements MissionSlip
             'activity_type' => $this->getActivityType(),
             'description'   => $this->getDescription(),
             'date'          => $this->getDate(),
-            'hours'         => $this->getHours(),
+            'time_logged'   => $this->getTimeLogged(),
             'team_id'       => $this->getTeamId(),
         ];
     }

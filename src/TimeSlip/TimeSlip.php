@@ -14,14 +14,14 @@ class TimeSlip implements MissionSlip
      * @param string|null $activityType
      * @param string|null $description
      * @param string|null $date
-     * @param string|null  $hours
+     * @param string|null $timeLogged
      * @param int         $teamId
      */
     public function __construct(
         protected string $activityType,
         protected string $description,
         protected ?string $date,
-        protected ?string $hours,
+        protected ?string $timeLogged,
         protected ?int $teamId = 0
     ) {
         //
@@ -58,13 +58,13 @@ class TimeSlip implements MissionSlip
     /**
      * @inheritdoc
      */
-    public function getHours(): string
+    public function getTimeLogged(): string
     {
-        if (empty($this->hours)) {
+        if (empty($this->timeLogged)) {
             return '0:00';
         }
 
-        return $this->hours;
+        return $this->timeLogged;
     }
 
     /**
@@ -90,7 +90,7 @@ class TimeSlip implements MissionSlip
             'activity_type' => $this->getActivityType(),
             'description'   => $this->getDescription(),
             'date'          => $this->getDate(),
-            'hours'         => $this->getHours(),
+            'time_logged'   => $this->getTimeLogged(),
             'team_id'       => $this->getTeamId(),
         ];
     }

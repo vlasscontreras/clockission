@@ -20,7 +20,7 @@ class TimeEntryAdapterTest extends TestCase
         $this->assertEquals('Production', $timeSlip->getActivityType());
         $this->assertEquals('PS-9999', $timeSlip->getDescription());
         $this->assertEquals('2022-01-11', $timeSlip->getDate());
-        $this->assertEquals('8:30', $timeSlip->getHours());
+        $this->assertEquals('8:30', $timeSlip->getTimeLogged());
     }
 
     public function testItConvertsColonsAfterActivityType()
@@ -40,7 +40,7 @@ class TimeEntryAdapterTest extends TestCase
         $this->assertEquals('Production', $timeSlip->getActivityType());
         $this->assertEquals('PS-9999', $timeSlip->getDescription());
         $this->assertEquals('2022-12-31', $timeSlip->getDate());
-        $this->assertEquals('0:00', $timeSlip->getHours());
+        $this->assertEquals('0:00', $timeSlip->getTimeLogged());
     }
 
     public function testItCreatesObjectValuesFail()

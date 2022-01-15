@@ -17,7 +17,7 @@ class TimeSlipTest extends TestCase
         $this->assertEquals('Production', $array['activity_type']);
         $this->assertEquals('PS-9999', $array['description']);
         $this->assertEquals('2022-01-11', $array['date']);
-        $this->assertEquals('8:30', $array['hours']);
+        $this->assertEquals('8:30', $array['time_logged']);
         $this->assertEquals(420, $array['team_id']);
     }
 
@@ -29,7 +29,7 @@ class TimeSlipTest extends TestCase
         $this->assertEquals('Production', $array['activity_type']);
         $this->assertEquals('PS-9999', $array['description']);
         $this->assertEquals(date('Y-m-d'), $array['date']);
-        $this->assertEquals('0:00', $array['hours']);
+        $this->assertEquals('0:00', $array['time_logged']);
         $this->assertEquals(0, $array['team_id']);
     }
 }

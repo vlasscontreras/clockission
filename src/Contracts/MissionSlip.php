@@ -14,25 +14,25 @@ interface MissionSlip extends Arrayable
     public function getActivityType(): string;
 
     /**
-     * Get the time entry description
+     * Get the time slip description
      *
      * @return string
      */
     public function getDescription(): string;
 
     /**
-     * Get the time entry date
+     * Get the time slip date
      *
      * @return string
      */
     public function getDate(): string;
 
     /**
-     * Get the time entry hours
+     * Get the time slip hours
      *
      * @return string
      */
-    public function getHours(): string;
+    public function getTimeLogged(): string;
 
     /**
      * Get the team ID
