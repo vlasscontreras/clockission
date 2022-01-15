@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\Entities;
+namespace VlassContreras\Clockission\TimeSlip;
 
 use VlassContreras\Clockission\Contracts\Arrayable;
 use VlassContreras\Clockission\DateTime\Date;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\Entities;
+namespace VlassContreras\Clockission\TimeEntry;
 
 use VlassContreras\Clockission\Contracts\Arrayable;
 

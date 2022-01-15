@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Entities;
+namespace Tests\Unit\TimeEntry;
 
 use PHPUnit\Framework\TestCase;
-use VlassContreras\Clockission\Entities\TimeEntry;
+use VlassContreras\Clockission\TimeEntry\TimeEntry;
 
 class TimeEntryTest extends TestCase
 {

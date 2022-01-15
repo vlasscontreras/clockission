@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Entities;
+namespace Tests\Unit\TimeSlip;
 
 use PHPUnit\Framework\TestCase;
-use VlassContreras\Clockission\Entities\TimeSlip;
+use VlassContreras\Clockission\TimeSlip\TimeSlip;
 
 class TimeSlipTest extends TestCase
 {
