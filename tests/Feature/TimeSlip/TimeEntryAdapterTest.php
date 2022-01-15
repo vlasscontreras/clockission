@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\TimeEntry\TimeEntry;
 use VlassContreras\Clockission\TimeSlip\TimeEntryAdapter;
-use VlassContreras\Clockission\TimeSlip\TimeSlip;
 
 class TimeEntryAdapterTest extends TestCase
 {

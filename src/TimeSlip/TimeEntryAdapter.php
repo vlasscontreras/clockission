@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace VlassContreras\Clockission\TimeSlip;
 
 use VlassContreras\Clockission\Contracts\ClockifyEntry;
@@ -33,9 +35,9 @@ class TimeEntryAdapter implements MissionSlip
     /**
      * Entry hours
      *
-     * @var string|null
+     * @var float|null
      */
-    protected ?string $hours;
+    protected ?float $hours;
 
     /**
      * Entry team ID
