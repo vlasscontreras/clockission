@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\TimeSlip;
 
+use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\ClockifyEntry;
 use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\DateTime\Date;
@@ -55,6 +56,7 @@ class TimeEntryAdapter implements MissionSlip
     {
         $this->date = $entry->getDate();
         $this->timeLogged = $entry->getHours();
+        $this->teamId = (new Config())->get('team_id');
         $this->parseDescription($entry->getDescription());
     }
 

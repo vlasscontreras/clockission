@@ -22,7 +22,7 @@ class TimeSlip implements MissionSlip
         protected string $description,
         protected ?string $date,
         protected ?string $timeLogged,
-        protected ?int $teamId = 0
+        protected ?int $teamId = null
     ) {
         //
     }

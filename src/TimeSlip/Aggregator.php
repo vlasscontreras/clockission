@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace VlassContreras\Clockission\TimeSlip;
 
 use InvalidArgumentException;
+use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\Arrayable;
 use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\DateTime\Time;
@@ -34,11 +35,13 @@ class Aggregator implements Arrayable
     protected function parseTimeEntries(array $entries): self
     {
         foreach ($entries as $entry) {
-            $timeSlip = (new TimeEntryAdapter(new TimeEntry(
+            $timeEntry = new TimeEntry(
                 $entry['Description'],
                 $entry['Start Date'],
                 $entry['Duration (decimal)']
-            )));
+            );
+
+            $timeSlip = new TimeEntryAdapter($timeEntry);
 
             $index = $this->exists($timeSlip);
 
