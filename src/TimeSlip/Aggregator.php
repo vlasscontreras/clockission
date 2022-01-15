@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace VlassContreras\Clockission\TimeSlip;
 
 use InvalidArgumentException;
-use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\Arrayable;
 use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\DateTime\Time;

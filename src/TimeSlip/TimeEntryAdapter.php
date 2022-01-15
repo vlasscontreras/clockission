@@ -56,7 +56,7 @@ class TimeEntryAdapter implements MissionSlip
     {
         $this->date = $entry->getDate();
         $this->timeLogged = $entry->getHours();
-        $this->teamId = (new Config())->get('team_id');
+        $this->teamId = (int) (new Config())->get('mission_team_id');
         $this->parseDescription($entry->getDescription());
     }
 
