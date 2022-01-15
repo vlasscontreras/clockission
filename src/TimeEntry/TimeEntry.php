@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\TimeEntry;
 
-use VlassContreras\Clockission\Contracts\Arrayable;
+use VlassContreras\Clockission\Contracts\ClockifyEntry;
 
-class TimeEntry implements Arrayable
+class TimeEntry implements ClockifyEntry
 {
     /**
      * Set up time entry
@@ -24,9 +24,7 @@ class TimeEntry implements Arrayable
     }
 
     /**
-     * Get the time entry description
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getDescription(): string
     {
@@ -38,9 +36,7 @@ class TimeEntry implements Arrayable
     }
 
     /**
-     * Get the time entry date
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getDate(): string
     {
@@ -52,9 +48,7 @@ class TimeEntry implements Arrayable
     }
 
     /**
-     * Get the time entry hours
-     *
-     * @return float
+     * @inheritDoc
      */
     public function getHours(): float
     {
