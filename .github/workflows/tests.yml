@@ -25,9 +25,10 @@ jobs:
         php_version: ${{ matrix.php }}
 
     - name: Run linters 👀
-      run: |
-        composer lint:phpcs
+      run: composer lint:phpcs
 
-    - name: Run tests 🧪
-      run: |
-        ./vendor/bin/phpunit
+    - name: Run unit tests 🧪
+      run: ./vendor/bin/phpunit --testsuite=Unit
+
+    - name: Run feature tests 🧪
+      run: ./vendor/bin/phpunit --testsuite=Feature
