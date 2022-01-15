@@ -19,6 +19,8 @@ class TimeTest extends TestCase
         $this->assertEquals('17:45', Time::decimalToHourMinute(17.75));
         $this->assertEquals('23:59', Time::decimalToHourMinute(23.99));
         $this->assertEquals('85:12', Time::decimalToHourMinute(85.2));
+        $this->assertEquals('0:17', Time::decimalToHourMinute(0.28));
+        $this->assertEquals('0:41', Time::decimalToHourMinute(0.68));
     }
 
     public function testItConvertsHoursAndMinutesToDecimals()
@@ -29,5 +31,7 @@ class TimeTest extends TestCase
         $this->assertEquals(17.75, Time::hourMinuteToDecimal('17:45'));
         $this->assertEquals(23.98, Time::hourMinuteToDecimal('23:59'));
         $this->assertEquals(85.2, Time::hourMinuteToDecimal('85:12'));
+        $this->assertEquals(0.28, Time::hourMinuteToDecimal('0:17'));
+        $this->assertEquals(0.68, Time::hourMinuteToDecimal('0:41'));
     }
 }
