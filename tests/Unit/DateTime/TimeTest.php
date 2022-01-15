@@ -34,4 +34,19 @@ class TimeTest extends TestCase
         $this->assertEquals(0.28, Time::hourMinuteToDecimal('0:17'));
         $this->assertEquals(0.68, Time::hourMinuteToDecimal('0:41'));
     }
+
+    public function testItAddsDecimalToHours()
+    {
+        $this->assertEquals('0:00', Time::addDecimalToHour('0:00', 0));
+        $this->assertEquals('0:01', Time::addDecimalToHour('0:00', 0.01));
+        $this->assertEquals('0:15', Time::addDecimalToHour('0:00', 0.25));
+        $this->assertEquals('0:30', Time::addDecimalToHour('0:00', 0.5));
+        $this->assertEquals('1:09', Time::addDecimalToHour('0:00', 1.15));
+        $this->assertEquals('17:45', Time::addDecimalToHour('0:00', 17.75));
+        $this->assertEquals('23:59', Time::addDecimalToHour('0:00', 23.99));
+        $this->assertEquals('85:12', Time::addDecimalToHour('0:00', 85.2));
+        $this->assertEquals('0:17', Time::addDecimalToHour('0:00', 0.28));
+        $this->assertEquals('0:41', Time::addDecimalToHour('0:00', 0.68));
+        $this->assertEquals('4:35', Time::addDecimalToHour('4:20', 0.25));
+    }
 }

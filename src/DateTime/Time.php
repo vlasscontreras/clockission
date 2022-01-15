@@ -39,4 +39,16 @@ class Time
 
         return (float) sprintf('%.2f', $hours + ($minutes / 60));
     }
+
+    /**
+     * Adds a decimal to a string of hours.
+     *
+     * @param string $hour
+     * @param float $decimal
+     * @return string
+     */
+    public static function addDecimalToHour(string $hour, float $decimal): string
+    {
+        return self::decimalToHourMinute(self::hourMinuteToDecimal($hour) + $decimal);
+    }
 }
