@@ -18,6 +18,7 @@ class UploadSlips implements Command
 
         $csv = new Parser($arguments[0]);
         $timeSlips = new Aggregator($csv->toArray());
+        $timeSlips->oldest();
 
         $client = new Client(
             $config->get('MISSION_USERNAME'),
