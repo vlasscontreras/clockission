@@ -15,9 +15,9 @@ class Aggregator implements Arrayable
     /**
      * Time entries
      *
-     * @var array
+     * @var MissionSlip[]
      */
-    protected array $timeEntries = [];
+    protected array $timeSlips = [];
 
     public function __construct(array $timeEntries)
     {
@@ -37,7 +37,7 @@ class Aggregator implements Arrayable
             $timeEntry = new TimeEntry(
                 $entry['Description'],
                 $entry['Start Date'],
-                $entry['Duration (decimal)']
+                (float) $entry['Duration (decimal)']
             );
 
             $timeSlip = new TimeEntryAdapter($timeEntry);
@@ -45,7 +45,7 @@ class Aggregator implements Arrayable
             $index = $this->exists($timeSlip);
 
             if ($index !== false) {
-                $this->updateSlipTimeLogged($index, $entry['Duration (decimal)']);
+                $this->updateSlipTimeLogged($index, (float) $entry['Duration (decimal)']);
             } else {
                 $this->pushSlip($timeSlip);
             }
@@ -64,9 +64,9 @@ class Aggregator implements Arrayable
      */
     protected function exists(MissionSlip $timeSlip): int|false
     {
-        foreach ($this->timeEntries as $key => $timeEntry) {
-            $descriptionMatch = $timeEntry['description'] === $timeSlip->getDescription();
-            $activityTypeMatch = $timeEntry['activity_type'] === $timeSlip->getActivityType();
+        foreach ($this->timeSlips as $key => $timeEntry) {
+            $descriptionMatch = $timeEntry->getDescription() === $timeSlip->getDescription();
+            $activityTypeMatch = $timeEntry->getActivityType() === $timeSlip->getActivityType();
 
             if ($descriptionMatch && $activityTypeMatch) {
                 return $key;
@@ -84,7 +84,7 @@ class Aggregator implements Arrayable
      */
     protected function pushSlip(MissionSlip $timeSlip): void
     {
-        $this->timeEntries[] = $timeSlip->toArray();
+        $this->timeSlips[] = $timeSlip;
     }
 
     /**
@@ -97,17 +97,25 @@ class Aggregator implements Arrayable
      */
     protected function updateSlipTimeLogged(int $index, float $timeToAdd): void
     {
-        $this->timeEntries[$index]['time_logged'] = Time::addDecimalToHour(
-            $this->timeEntries[$index]['time_logged'],
-            $timeToAdd
+        $this->timeSlips[$index] = $this->timeSlips[$index]->setTimeLogged(
+            Time::addDecimalToHour(
+                $this->timeSlips[$index]->getTimeLogged(),
+                $timeToAdd
+            )
         );
     }
 
     /**
      * @inheritdoc
      */
-    public function toArray(): array
+    public function toArray(bool $deep = false): array
     {
-        return $this->timeEntries;
+        if (!$deep) {
+            return $this->timeSlips;
+        }
+
+        return array_map(function (MissionSlip $timeSlip) {
+            return $timeSlip->toArray();
+        }, $this->timeSlips);
     }
 }

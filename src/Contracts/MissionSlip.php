@@ -40,4 +40,12 @@ interface MissionSlip extends Arrayable
      * @return int
      */
     public function getTeamId(): int;
+
+    /**
+     * Set the time slip hours
+     *
+     * @param string $timeLogged
+     * @return self
+     */
+    public function setTimeLogged(string $timeLogged): self;
 }

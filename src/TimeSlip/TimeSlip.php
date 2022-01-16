@@ -80,6 +80,16 @@ class TimeSlip implements MissionSlip
     }
 
     /**
+     * @inheritdoc
+     */
+    public function setTimeLogged(string $timeLogged): self
+    {
+        $this->timeLogged = $timeLogged;
+
+        return $this;
+    }
+
+    /**
      * Convert time entry to array.
      *
      * @return array

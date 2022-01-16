@@ -16,7 +16,7 @@ class AggregatorTest extends TestCase
     public function testItMatchesTotalTime(array $timeEntries)
     {
         $aggregate = new Aggregator($timeEntries);
-        $array = $aggregate->toArray();
+        $array = $aggregate->toArray(true);
         $sum = array_sum(array_map(function ($time) {
             return Time::hourMinuteToDecimal($time);
         }, array_column($array, 'time_logged')));
@@ -31,7 +31,7 @@ class AggregatorTest extends TestCase
     public function testItUnifiesEntriesWithSameDescription(array $timeEntries)
     {
         $aggregate = new Aggregator($timeEntries);
-        $array = $aggregate->toArray();
+        $array = $aggregate->toArray(true);
         $counts = array_count_values(array_column($array, 'description'));
 
         $this->assertEquals(3, count($array));
