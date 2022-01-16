@@ -54,7 +54,7 @@ class TimeEntryAdapter implements MissionSlip
      */
     public function __construct(ClockifyEntry $entry)
     {
-        $this->date = $entry->getDate();
+        $this->date = Date::toIso8601Date($entry->getDate());
         $this->timeLogged = Time::decimalToHourMinute($entry->getHours());
         $this->teamId = (int) (new Config())->get('mission_team_id');
         $this->parseDescription($entry->getDescription());
@@ -91,7 +91,7 @@ class TimeEntryAdapter implements MissionSlip
             return date('Y-m-d');
         }
 
-        return Date::toIso8601Date($this->date);
+        return $this->date;
     }
 
     /**
