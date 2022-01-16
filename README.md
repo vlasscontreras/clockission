@@ -60,6 +60,54 @@ php cm upload-slips /path/to/csv
 
 Done! 😃
 
+## RAQ (Rarely Asked Questions)
+
+### What are the required environment variables?
+
+All those that are present in the `.env.example` file.
+
+---
+
+### What are my credentials used for?
+
+To send a request to the Mission "API" so they are assigned to your profile properly.
+
+<details>
+<summary>👀 For the curious ones... <em>(click me)</em></summary>
+<br>
+You can see more details about the usage of your credentials and the interaction with the Mission "API" in the <code>src/Mission/Commands/UploadSlips.php</code> and <code>src/Mission/Client.php</code> files.
+</details>
+
+---
+
+### Where do I find the team ID?
+
+Go the [timecards page](https://app.mission.dev/platform/time_cards) and choose your option from the **Select Team** dropdown, then open the Browser Developer Tools, go to the Console, and put the following statement:
+
+```javascript
+document.getElementById('time_slip_team_id').value
+```
+
+The output will be the team ID.
+
+---
+
+### Where do I find the time card ID?
+
+Go the [timecards page](https://app.mission.dev/platform/time_cards) and open the Browser Developer Tools, go to the Console, and put the following statement:
+
+```javascript
+document.getElementById('time_card_id').value
+```
+
+The output will be the time card ID.
+
+---
+
+### Why?
+
+🤷🏻‍♂️
+
 ## 📄 License
 
 The Clockission project is open-sourced software licensed under the [MIT license](LICENSE.md).
