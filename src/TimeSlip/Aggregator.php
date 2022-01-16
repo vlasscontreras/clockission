@@ -106,6 +106,18 @@ class Aggregator implements Arrayable
     }
 
     /**
+     * Sort slips by date from oldest to newest.
+     *
+     * @return void
+     */
+    public function oldest(): void
+    {
+        usort($this->timeSlips, function (MissionSlip $a, MissionSlip $b) {
+            return $a->getDate() <=> $b->getDate();
+        });
+    }
+
+    /**
      * @inheritdoc
      * @return array|MissionSlip[]
      */
