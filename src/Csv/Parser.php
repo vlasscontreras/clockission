@@ -15,6 +15,10 @@ class Parser implements Arrayable
      */
     public function __construct(private string $file)
     {
+        if (!file_exists($file)) {
+            throw new \RuntimeException('File does not exist.');
+        }
+
         $this->file = $file;
     }
 
