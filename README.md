@@ -55,7 +55,7 @@ Production: PS-9999
 Then, export a report from Clockify in CSV format, with whatever dates you want, and place it wherever you want. Next, use this command:
 
 ```shell
-composer run-script post-slips /path/to/csv
+php cm upload-slips /path/to/csv
 ```
 
 Done! 😃
