@@ -107,6 +107,7 @@ class Aggregator implements Arrayable
 
     /**
      * @inheritdoc
+     * @return array|MissionSlip[]
      */
     public function toArray(bool $deep = false): array
     {
