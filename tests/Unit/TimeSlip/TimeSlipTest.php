@@ -32,4 +32,12 @@ class TimeSlipTest extends TestCase
         $this->assertEquals('0:00', $array['time_logged']);
         $this->assertEquals(0, $array['team_id']);
     }
+
+    public function testItValidatesActivityType()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid activity type');
+
+        new TimeSlip('Invalid Type', 'PS-9999', '', null, null);
+    }
 }

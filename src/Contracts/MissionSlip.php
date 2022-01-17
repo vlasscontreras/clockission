@@ -48,4 +48,12 @@ interface MissionSlip extends Arrayable
      * @return self
      */
     public function setTimeLogged(string $timeLogged): self;
+
+    /**
+     * Validate and assign the activity type.
+     *
+     * @return self
+     * @throws \InvalidArgumentException
+     */
+    public function validateActivityType(string $activityType): string;
 }

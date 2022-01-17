@@ -43,12 +43,21 @@ class TimeEntryAdapterTest extends TestCase
         $this->assertEquals('0:00', $timeSlip->getTimeLogged());
     }
 
-    public function testItCreatesObjectValuesFail()
+    public function testItValidatesDescriptionFormat()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid description format. Expected: "type: description"');
 
         $timeEntry = new TimeEntry('Production', '01/11/2022', 8.5);
+        new TimeEntryAdapter($timeEntry);
+    }
+
+    public function testItValidatesActivityType()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid activity type');
+
+        $timeEntry = new TimeEntry('Testing: Entry', '01/11/2022', 8.5);
         new TimeEntryAdapter($timeEntry);
     }
 }

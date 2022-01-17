@@ -4,10 +4,19 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\TimeSlip;
 
+use InvalidArgumentException;
 use VlassContreras\Clockission\Contracts\MissionSlip;
+use VlassContreras\Clockission\TimeSlip\Enums\ActivityType;
 
 class TimeSlip implements MissionSlip
 {
+    /**
+     * Activity type
+     *
+     * @var string
+     */
+    protected string $activityType;
+
     /**
      * Set up time entry
      *
@@ -18,13 +27,13 @@ class TimeSlip implements MissionSlip
      * @param int         $teamId
      */
     public function __construct(
-        protected string $activityType,
+        string $activityType,
         protected string $description,
         protected ?string $date,
         protected ?string $timeLogged,
         protected ?int $teamId = null
     ) {
-        //
+        $this->activityType = $this->validateActivityType($activityType);
     }
 
     /**
@@ -87,6 +96,18 @@ class TimeSlip implements MissionSlip
         $this->timeLogged = $timeLogged;
 
         return $this;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function validateActivityType(string $activityType): string
+    {
+        if (!in_array($activityType, ActivityType::getValues())) {
+            throw new InvalidArgumentException('Invalid activity type');
+        }
+
+        return $activityType;
     }
 
     /**
