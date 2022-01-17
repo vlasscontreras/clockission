@@ -9,11 +9,13 @@ use VlassContreras\Clockission\Contracts\Command;
 use VlassContreras\Clockission\Csv\Parser;
 use VlassContreras\Clockission\Mission\Client;
 use VlassContreras\Clockission\TimeSlip\Aggregator;
+use VlassContreras\Clockission\TimeTracker\TimeTracker;
 
 class UploadSlips implements Command
 {
     public function run(array $arguments): void
     {
+        $timeTracker = new TimeTracker(true);
         $config = new Config();
 
         $csv = new Parser($arguments[0]);
@@ -30,5 +32,10 @@ class UploadSlips implements Command
         foreach ($timeSlips->toArray() as $timeSlip) {
             $client->pushTimeSlip($timeSlip, (int) $config->get('MISSION_TIME_CARD_ID'));
         }
+
+        $timeTracker->end();
+
+        printf('✅ Uploaded %d time slips in %.3f seconds 😁', count($timeSlips->toArray()), $timeTracker->total());
+        echo PHP_EOL;
     }
 }
