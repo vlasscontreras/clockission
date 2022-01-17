@@ -6,11 +6,10 @@ namespace VlassContreras\Clockission\TimeSlip;
 
 use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\ClockifyEntry;
-use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\DateTime\Date;
 use VlassContreras\Clockission\DateTime\Time;
 
-class TimeEntryAdapter implements MissionSlip
+class TimeEntryAdapter extends TimeSlip
 {
     /**
      * Activity type
@@ -61,94 +60,6 @@ class TimeEntryAdapter implements MissionSlip
     }
 
     /**
-     * Get the time slip activity type
-     *
-     * @return string
-     */
-    public function getActivityType(): string
-    {
-        return $this->activityType;
-    }
-
-    /**
-     * Get the time entry description
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * Get the time entry date
-     *
-     * @return string
-     */
-    public function getDate(): string
-    {
-        if (empty($this->date)) {
-            return date('Y-m-d');
-        }
-
-        return $this->date;
-    }
-
-    /**
-     * Get the time entry hours
-     *
-     * @return string
-     */
-    public function getTimeLogged(): string
-    {
-        if (empty($this->timeLogged)) {
-            return Time::decimalToHourMinute(0);
-        }
-
-        return $this->timeLogged;
-    }
-
-    /**
-     * Get the team ID
-     *
-     * @return int
-     */
-    public function getTeamId(): int
-    {
-        if (empty($this->teamId)) {
-            return 0;
-        }
-
-        return $this->teamId;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function setTimeLogged(string $timeLogged): self
-    {
-        $this->timeLogged = $timeLogged;
-
-        return $this;
-    }
-
-    /**
-     * Convert time entry to array.
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-        return [
-            'activity_type' => $this->getActivityType(),
-            'description'   => $this->getDescription(),
-            'date'          => $this->getDate(),
-            'time_logged'   => $this->getTimeLogged(),
-            'team_id'       => $this->getTeamId(),
-        ];
-    }
-
-    /**
      * Parse description
      *
      * @param string $description
@@ -161,7 +72,7 @@ class TimeEntryAdapter implements MissionSlip
             throw new \InvalidArgumentException('Invalid description format. Expected: "type: description"');
         }
 
-        $this->activityType = $matches[1];
+        $this->activityType = $this->validateActivityType($matches[1]);
         $this->description = $matches[2];
     }
 }
