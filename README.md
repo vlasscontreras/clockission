@@ -104,6 +104,14 @@ The output will be the time card ID.
 
 ---
 
+### How do I export a CSV from Clockify?
+
+Go to **Reports** > **Detailed**, select **Team**, **Client**, **Project**, etc. and then click the **Export** dropdown and select the **Save as CSV** option.
+
+Clockify documentation: [Customize exports](https://clockify.me/help/extra-features/customize-exports).
+
+---
+
 ### Why?
 
 🤷🏻‍♂️
