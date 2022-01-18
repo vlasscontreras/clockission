@@ -7,6 +7,7 @@ namespace VlassContreras\Clockission\TimeSlip;
 use InvalidArgumentException;
 use VlassContreras\Clockission\Contracts\Arrayable;
 use VlassContreras\Clockission\Contracts\MissionSlip;
+use VlassContreras\Clockission\DateTime\Date;
 use VlassContreras\Clockission\DateTime\Time;
 use VlassContreras\Clockission\TimeEntry\TimeEntry;
 
@@ -59,16 +60,17 @@ class Aggregator implements Arrayable
      *
      * It is determined by the description and activity type.
      *
-     * @param MissionSlip $timeSlip
+     * @param MissionSlip $slip
      * @return int|false
      */
-    protected function exists(MissionSlip $timeSlip): int|false
+    protected function exists(MissionSlip $slip): int|false
     {
-        foreach ($this->timeSlips as $key => $timeEntry) {
-            $descriptionMatch = $timeEntry->getDescription() === $timeSlip->getDescription();
-            $activityTypeMatch = $timeEntry->getActivityType() === $timeSlip->getActivityType();
+        foreach ($this->timeSlips as $key => $timeSlip) {
+            $descriptionMatch = $timeSlip->getDescription() === $slip->getDescription();
+            $activityTypeMatch = $timeSlip->getActivityType() === $slip->getActivityType();
+            $dateMatch = $timeSlip->getDate() === $slip->getDate();
 
-            if ($descriptionMatch && $activityTypeMatch) {
+            if ($descriptionMatch && $activityTypeMatch && $dateMatch) {
                 return $key;
             }
         }
