@@ -43,10 +43,8 @@ class Aggregator implements Arrayable
 
             $timeSlip = new TimeEntryAdapter($timeEntry);
 
-            $index = $this->exists($timeSlip);
-
-            if ($index !== false) {
-                $this->updateSlipTimeLogged($index, (float) $entry['Duration (decimal)']);
+            if (($currentSlip = $this->exists($timeSlip)) !== false) {
+                $this->updateSlipTimeLogged($currentSlip, (float) $entry['Duration (decimal)']);
             } else {
                 $this->pushSlip($timeSlip);
             }
@@ -61,17 +59,17 @@ class Aggregator implements Arrayable
      * It is determined by the description and activity type.
      *
      * @param MissionSlip $slip
-     * @return int|false
+     * @return MissionSlip|false
      */
-    protected function exists(MissionSlip $slip): int|false
+    protected function exists(MissionSlip $slip): MissionSlip|false
     {
-        foreach ($this->timeSlips as $key => $timeSlip) {
+        foreach ($this->timeSlips as $timeSlip) {
             $descriptionMatch = $timeSlip->getDescription() === $slip->getDescription();
             $activityTypeMatch = $timeSlip->getActivityType() === $slip->getActivityType();
             $dateMatch = $timeSlip->getDate() === $slip->getDate();
 
             if ($descriptionMatch && $activityTypeMatch && $dateMatch) {
-                return $key;
+                return $timeSlip;
             }
         }
 
@@ -92,16 +90,16 @@ class Aggregator implements Arrayable
     /**
      * Update the time logged of a time slip.
      *
-     * @param int $index
+     * @param MissionSlip $slip
      * @param float $timeToAdd
      * @return void
      * @throws InvalidArgumentException
      */
-    protected function updateSlipTimeLogged(int $index, float $timeToAdd): void
+    protected function updateSlipTimeLogged(MissionSlip $slip, float $timeToAdd): void
     {
-        $this->timeSlips[$index] = $this->timeSlips[$index]->setTimeLogged(
+        $slip->setTimeLogged(
             Time::addDecimalToHour(
-                $this->timeSlips[$index]->getTimeLogged(),
+                $slip->getTimeLogged(),
                 $timeToAdd
             )
         );
