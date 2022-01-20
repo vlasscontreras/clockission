@@ -21,6 +21,18 @@ class TimeSlipTest extends TestCase
         $this->assertEquals(420, $timeSlipArray['team_id']);
     }
 
+    public function testItMatchesObjectWithArray(): void
+    {
+        $timeSlip = new TimeSlip('Production', 'PS-9999', '2022-01-11', '8:30', 420);
+        $timeSlipArray = $timeSlip->toArray();
+
+        $this->assertEquals($timeSlip->getActivityType(), $timeSlipArray['activity_type']);
+        $this->assertEquals($timeSlip->getDescription(), $timeSlipArray['description']);
+        $this->assertEquals($timeSlip->getDate(), $timeSlipArray['date']);
+        $this->assertEquals($timeSlip->getTimeLogged(), $timeSlipArray['time_logged']);
+        $this->assertEquals($timeSlip->getTeamId(), $timeSlipArray['team_id']);
+    }
+
     public function testItCreatesObjectValuesWithDefaults(): void
     {
         $timeSlip = new TimeSlip('Production', 'PS-9999', '', null, null);
