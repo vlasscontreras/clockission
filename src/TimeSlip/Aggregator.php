@@ -7,7 +7,6 @@ namespace VlassContreras\Clockission\TimeSlip;
 use InvalidArgumentException;
 use VlassContreras\Clockission\Contracts\Arrayable;
 use VlassContreras\Clockission\Contracts\MissionSlip;
-use VlassContreras\Clockission\DateTime\Date;
 use VlassContreras\Clockission\DateTime\Time;
 use VlassContreras\Clockission\TimeEntry\TimeEntry;
 
@@ -20,6 +19,13 @@ class Aggregator implements Arrayable
      */
     protected array $timeSlips = [];
 
+    /**
+     * Aggregator constructor.
+     *
+     * @param array<int, array<string, string>> $timeEntries
+     * @return void
+     * @throws InvalidArgumentException
+     */
     public function __construct(array $timeEntries)
     {
         $this->parseTimeEntries($timeEntries);
@@ -28,7 +34,7 @@ class Aggregator implements Arrayable
     /**
      * Convert the time entries to an array of time slips.
      *
-     * @param array $entries
+     * @param array<int, array<string, string>> $entries
      * @return Aggregator
      * @throws InvalidArgumentException
      */
@@ -118,8 +124,8 @@ class Aggregator implements Arrayable
     }
 
     /**
-     * @inheritdoc
-     * @return array|MissionSlip[]
+     * @inheritDoc
+     * @return MissionSlip[]|array<int, array<int|string>>
      */
     public function toArray(bool $deep = false): array
     {

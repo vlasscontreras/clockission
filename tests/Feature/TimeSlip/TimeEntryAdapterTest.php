@@ -11,7 +11,7 @@ use VlassContreras\Clockission\TimeSlip\TimeEntryAdapter;
 
 class TimeEntryAdapterTest extends TestCase
 {
-    public function testItConvertsToTimeSlip()
+    public function testItConvertsToTimeSlip(): void
     {
         $timeEntry = new TimeEntry('Production: PS-9999', '01/11/2022', 8.5);
         $timeSlip = new TimeEntryAdapter($timeEntry);
@@ -23,7 +23,7 @@ class TimeEntryAdapterTest extends TestCase
         $this->assertEquals('8:30', $timeSlip->getTimeLogged());
     }
 
-    public function testItConvertsColonsAfterActivityType()
+    public function testItConvertsColonsAfterActivityType(): void
     {
         $timeEntry = new TimeEntry('Production: PS-9999: Something Else: New :: :D', '01/11/2022', 8.5);
         $timeSlip = new TimeEntryAdapter($timeEntry);
@@ -32,7 +32,7 @@ class TimeEntryAdapterTest extends TestCase
         $this->assertEquals('PS-9999: Something Else: New :: :D', $timeSlip->getDescription());
     }
 
-    public function testItConvertsToTimeSlipDefaults()
+    public function testItConvertsToTimeSlipDefaults(): void
     {
         $timeEntry = new TimeEntry('Production: PS-9999', '12/31/2022');
         $timeSlip = new TimeEntryAdapter($timeEntry);
@@ -43,7 +43,7 @@ class TimeEntryAdapterTest extends TestCase
         $this->assertEquals('0:00', $timeSlip->getTimeLogged());
     }
 
-    public function testItValidatesDescriptionFormat()
+    public function testItValidatesDescriptionFormat(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid description format. Expected: "type: description"');
@@ -52,7 +52,7 @@ class TimeEntryAdapterTest extends TestCase
         new TimeEntryAdapter($timeEntry);
     }
 
-    public function testItValidatesActivityType()
+    public function testItValidatesActivityType(): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid activity type');

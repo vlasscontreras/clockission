@@ -20,8 +20,8 @@ class TimeSlip implements MissionSlip
     /**
      * Set up time entry
      *
-     * @param string|null $activityType
-     * @param string|null $description
+     * @param string      $activityType
+     * @param string      $description
      * @param string|null $date
      * @param string|null $timeLogged
      * @param int         $teamId
@@ -37,7 +37,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getActivityType(): string
     {
@@ -45,7 +45,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getDescription(): string
     {
@@ -53,7 +53,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getDate(): string
     {
@@ -65,7 +65,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getTimeLogged(): string
     {
@@ -77,7 +77,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getTeamId(): int
     {
@@ -89,7 +89,7 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setTimeLogged(string $timeLogged): self
     {
@@ -99,11 +99,11 @@ class TimeSlip implements MissionSlip
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function validateActivityType(string $activityType): string
     {
-        if (!in_array($activityType, ActivityType::getValues())) {
+        if (!in_array($activityType, ActivityType::cases())) {
             throw new InvalidArgumentException('Invalid activity type');
         }
 
@@ -113,7 +113,7 @@ class TimeSlip implements MissionSlip
     /**
      * Convert time entry to array.
      *
-     * @return array
+     * @return array<string, int|string>
      */
     public function toArray(): array
     {
