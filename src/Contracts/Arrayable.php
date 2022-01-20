@@ -9,7 +9,7 @@ interface Arrayable
     /**
      * Convert the object to array.
      *
-     * @return array
+     * @return array<mixed, mixed>
      */
     public function toArray(): array;
 }

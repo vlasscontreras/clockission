@@ -6,6 +6,7 @@ namespace VlassContreras\Clockission\Mission\Commands;
 
 use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\Command;
+use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\Csv\Parser;
 use VlassContreras\Clockission\Mission\Client;
 use VlassContreras\Clockission\TimeSlip\Aggregator;
@@ -29,13 +30,16 @@ class UploadSlips implements Command
 
         $client->authenticate();
 
-        foreach ($timeSlips->toArray() as $timeSlip) {
+        /** @var MissionSlip[] */
+        $timeSlips = $timeSlips->toArray();
+
+        foreach ($timeSlips as $timeSlip) {
             $client->pushTimeSlip($timeSlip, (int) $config->get('MISSION_TIME_CARD_ID'));
         }
 
         $timeTracker->end();
 
-        printf('✅ Uploaded %d time slips in %.3f seconds 😁', count($timeSlips->toArray()), $timeTracker->total());
+        printf('✅ Uploaded %d time slips in %.3f seconds 😁', count($timeSlips), $timeTracker->total());
         echo PHP_EOL;
     }
 }

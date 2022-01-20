@@ -9,7 +9,7 @@ use VlassContreras\Clockission\DateTime\Time;
 
 class TimeTest extends TestCase
 {
-    public function testItConvertsDecimalsToHoursAndMinutes()
+    public function testItConvertsDecimalsToHoursAndMinutes(): void
     {
         $this->assertEquals('0:00', Time::decimalToHourMinute(0));
         $this->assertEquals('0:01', Time::decimalToHourMinute(0.01));
@@ -23,7 +23,7 @@ class TimeTest extends TestCase
         $this->assertEquals('0:41', Time::decimalToHourMinute(0.68));
     }
 
-    public function testItConvertsHoursAndMinutesToDecimals()
+    public function testItConvertsHoursAndMinutesToDecimals(): void
     {
         $this->assertEquals(0.25, Time::hourMinuteToDecimal('0:15'));
         $this->assertEquals(0.5, Time::hourMinuteToDecimal('0:30'));
@@ -35,7 +35,7 @@ class TimeTest extends TestCase
         $this->assertEquals(0.68, Time::hourMinuteToDecimal('0:41'));
     }
 
-    public function testItAddsDecimalToHours()
+    public function testItAddsDecimalToHours(): void
     {
         $this->assertEquals('0:00', Time::addDecimalToHour('0:00', 0));
         $this->assertEquals('0:01', Time::addDecimalToHour('0:00', 0.01));

@@ -7,9 +7,16 @@ namespace VlassContreras\Clockission\Contracts;
 interface Enum
 {
     /**
+     * Get the class constants
+     *
+     * @return array<string, string>
+     */
+    public static function getConstants(): array;
+
+    /**
      * Get the enum values.
      *
-     * @return array
+     * @return array<int, string>
      */
-    public static function getValues(): array;
+    public static function cases(): array;
 }

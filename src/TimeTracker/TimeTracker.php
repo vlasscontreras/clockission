@@ -23,7 +23,7 @@ class TimeTracker implements TimeTrackerInterface
     protected float $endTime = 0;
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function __construct(bool $start = false)
     {
@@ -33,7 +33,7 @@ class TimeTracker implements TimeTrackerInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function start(): float
     {
@@ -43,7 +43,7 @@ class TimeTracker implements TimeTrackerInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function end(): float
     {
@@ -53,7 +53,7 @@ class TimeTracker implements TimeTrackerInterface
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function total(): float
     {

@@ -27,10 +27,10 @@ class Config
      * Get a config value from environment
      *
      * @param string $key
-     * @param mixed $default
-     * @return mixed
+     * @param string $default
+     * @return string
      */
-    public function get(string $key, mixed $default = null): mixed
+    public function get(string $key, string $default = null): string
     {
         $key = strtoupper($key);
 

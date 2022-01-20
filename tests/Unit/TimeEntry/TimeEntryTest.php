@@ -9,23 +9,23 @@ use VlassContreras\Clockission\TimeEntry\TimeEntry;
 
 class TimeEntryTest extends TestCase
 {
-    public function testItCreatesObjectValues()
+    public function testItCreatesObjectValues(): void
     {
         $timeEntry = new TimeEntry('PS-9999', '01/11/2022', 8.00);
-        $array = $timeEntry->toArray();
+        $timeEntryArray = $timeEntry->toArray();
 
-        $this->assertEquals('PS-9999', $array['description']);
-        $this->assertEquals('01/11/2022', $array['date']);
-        $this->assertEquals(8.00, $array['hours']);
+        $this->assertEquals('PS-9999', $timeEntryArray['description']);
+        $this->assertEquals('01/11/2022', $timeEntryArray['date']);
+        $this->assertEquals(8.00, $timeEntryArray['hours']);
     }
 
-    public function testItCreatesObjectValuesWithDefaults()
+    public function testItCreatesObjectValuesWithDefaults(): void
     {
         $timeEntry = new TimeEntry('', null);
-        $array = $timeEntry->toArray();
+        $timeEntryArray = $timeEntry->toArray();
 
-        $this->assertEquals('N/A', $array['description']);
-        $this->assertEquals(date('m/d/Y'), $array['date']);
-        $this->assertEquals(0, $array['hours']);
+        $this->assertEquals('N/A', $timeEntryArray['description']);
+        $this->assertEquals(date('m/d/Y'), $timeEntryArray['date']);
+        $this->assertEquals(0, $timeEntryArray['hours']);
     }
 }

@@ -10,18 +10,21 @@ use VlassContreras\Clockission\Contracts\Enum as EnumInterface;
 abstract class Enum implements EnumInterface
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public static function getValues(): array
+    public static function getConstants(): array
     {
-        return array_values(static::toArray());
+        $reflection = new ReflectionClass(static::class);
+
+        /** @var string[] */
+        return $reflection->getConstants();
     }
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public static function toArray(): array
+    public static function cases(): array
     {
-        return (new ReflectionClass(static::class))->getConstants();
+        return array_values(static::getConstants());
     }
 }

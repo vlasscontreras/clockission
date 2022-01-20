@@ -62,7 +62,7 @@ class TimeEntry implements ClockifyEntry
     /**
      * Convert time entry to array.
      *
-     * @return array
+     * @return array<string, string|float>
      */
     public function toArray(): array
     {
