@@ -28,9 +28,9 @@ class Config
      *
      * @param string $key
      * @param string $default
-     * @return string
+     * @return string|null
      */
-    public function get(string $key, string $default = null): string
+    public function get(string $key, string $default = null): ?string
     {
         $key = strtoupper($key);
 

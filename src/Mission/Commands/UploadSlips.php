@@ -24,8 +24,8 @@ class UploadSlips implements Command
         $timeSlips->oldest();
 
         $client = new Client(
-            $config->get('MISSION_USERNAME'),
-            $config->get('MISSION_PASSWORD')
+            (string) $config->get('MISSION_USERNAME'),
+            (string) $config->get('MISSION_PASSWORD')
         );
 
         $client->authenticate();
