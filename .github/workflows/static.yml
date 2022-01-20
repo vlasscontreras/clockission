@@ -1,4 +1,4 @@
-name: Tests
+name: Static Analysis
 
 on: [push, pull_request]
 
@@ -24,8 +24,8 @@ jobs:
       with:
         php_version: ${{ matrix.php }}
 
-    - name: Run unit tests 🧪
-      run: ./vendor/bin/phpunit --testsuite=Unit
+    - name: Run linters 👀
+      run: composer lint:phpcs
 
-    - name: Run feature tests 🧪
-      run: ./vendor/bin/phpunit --testsuite=Feature
+    - name: Run PHPStan 🧐
+      run: ./vendor/bin/phpstan --no-progress --debug
