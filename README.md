@@ -1,6 +1,7 @@
 # Clockission
 
 [![Tests](https://github.com/vlasscontreras/clockission/actions/workflows/tests.yml/badge.svg)](https://github.com/vlasscontreras/clockission/actions/workflows/tests.yml)
+[![Static Analysis](https://github.com/vlasscontreras/clockission/actions/workflows/static.yml/badge.svg)](https://github.com/vlasscontreras/clockission/actions/workflows/static.yml)
 [![Latest Stable Version](https://img.shields.io/github/v/release/vlasscontreras/clockission?style=flat)](https://github.com/vlasscontreras/clockission/releases/latest)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?style=flat)](https://github.com/vlasscontreras/clockission/blob/main/LICENSE.md)
 [![PHPStan Enabled](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg?style=flat)](https://github.com/vlasscontreras/clockission/actions/workflows/tests.yml)
