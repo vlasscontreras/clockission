@@ -3,11 +3,13 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  test:
+  ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         php: [8.0]
+
+    name: PHP ${{ matrix.php }}
 
     steps:
     - name: Checkout 🛎
