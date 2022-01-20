@@ -52,8 +52,15 @@ interface MissionSlip extends Arrayable
     /**
      * Validate and assign the activity type.
      *
-     * @return self
+     * @return string
      * @throws \InvalidArgumentException
      */
     public function validateActivityType(string $activityType): string;
+
+    /**
+     * Get the time slip activity type
+     *
+     * @return array<string, int|string>
+     */
+    public function toArray(): array;
 }

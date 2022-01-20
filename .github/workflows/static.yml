@@ -1,0 +1,56 @@
+name: Static Analysis
+
+on: [push, pull_request]
+
+jobs:
+  cs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.0]
+
+    name: Code Style (PHP ${{ matrix.php }})
+
+    steps:
+    - name: Checkout 🛎
+      uses: actions/checkout@v2
+
+    - name: Cache Composer dependencies 📦
+      uses: actions/cache@v2
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install Dependencies 👨🏻‍💻
+      uses: php-actions/composer@v6
+      with:
+        php_version: ${{ matrix.php }}
+
+    - name: Run linters 👀
+      run: composer lint:phpcs
+
+  phpstan:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.0]
+
+    name: PHPStan (PHP ${{ matrix.php }})
+
+    steps:
+    - name: Checkout 🛎
+      uses: actions/checkout@v2
+
+    - name: Cache Composer dependencies 📦
+      uses: actions/cache@v2
+      with:
+        path: /tmp/composer-cache
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+    - name: Install Dependencies 👨🏻‍💻
+      uses: php-actions/composer@v6
+      with:
+        php_version: ${{ matrix.php }}
+
+    - name: Run PHPStan 🧐
+      run: ./vendor/bin/phpstan --no-progress --debug

@@ -9,7 +9,7 @@ use VlassContreras\Clockission\TimeTracker\TimeTracker;
 
 class TimeTrackerTest extends TestCase
 {
-    public function testItCountsTime()
+    public function testItCountsTime(): void
     {
         $timeTracker = new TimeTracker();
         $timeTracker->start();

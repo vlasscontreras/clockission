@@ -63,8 +63,9 @@ class TimeEntryAdapter extends TimeSlip
      * Parse description
      *
      * @param string $description
+     * @return void
      */
-    protected function parseDescription(string $description)
+    protected function parseDescription(string $description): void
     {
         preg_match('/^(.[^:]+): (.*)$/', $description, $matches);
 

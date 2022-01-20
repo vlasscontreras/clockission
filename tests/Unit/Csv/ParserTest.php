@@ -9,7 +9,7 @@ use VlassContreras\Clockission\Csv\Parser;
 
 class ParserTest extends TestCase
 {
-    public function testItParsesCsvAsArray()
+    public function testItParsesCsvAsArray(): void
     {
         $parser = new Parser($this->getSampleCsvFile());
         $data = $parser->toArray();
@@ -18,7 +18,7 @@ class ParserTest extends TestCase
         $this->assertCount(2, $data);
     }
 
-    public function testItParsesFields()
+    public function testItParsesFields(): void
     {
         $parser = new Parser($this->getSampleCsvFile());
         $data = $parser->toArray();
@@ -39,7 +39,7 @@ class ParserTest extends TestCase
         $this->assertArrayHasKey('Duration (decimal)', $data[0]);
     }
 
-    public function testItParsesFielValues()
+    public function testItParsesFielValues(): void
     {
         $parser = new Parser($this->getSampleCsvFile());
         $data = $parser->toArray();

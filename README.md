@@ -1,7 +1,10 @@
 # Clockission
 
 [![Tests](https://github.com/vlasscontreras/clockission/actions/workflows/tests.yml/badge.svg)](https://github.com/vlasscontreras/clockission/actions/workflows/tests.yml)
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/vlasscontreras/clockission/blob/main/LICENSE.md)
+[![Static Analysis](https://github.com/vlasscontreras/clockission/actions/workflows/static.yml/badge.svg)](https://github.com/vlasscontreras/clockission/actions/workflows/static.yml)
+[![Latest Stable Version](https://img.shields.io/github/v/release/vlasscontreras/clockission?style=flat)](https://github.com/vlasscontreras/clockission/releases/latest)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?style=flat)](https://github.com/vlasscontreras/clockission/blob/main/LICENSE.md)
+[![PHPStan Enabled](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg?style=flat)](https://github.com/vlasscontreras/clockission/actions/workflows/tests.yml)
 
 Export CSV files from Clockify and import them into the Mission Timecards and save about 10-20 minutes per week 😁
 
@@ -31,7 +34,7 @@ Copy the `.env.example` (and update your credentials):
 cp .env.example .env
 ```
 
-## 🤔 How It Works?
+## 🤓 How It Works?
 
 In Clockify, make sure your time entries have the following format:
 
@@ -60,7 +63,7 @@ php cm upload-slips /path/to/csv
 
 Done! 😃
 
-## RAQ (Rarely Asked Questions)
+## 🤔 RAQ (Rarely Asked Questions)
 
 ### What are the required environment variables?
 

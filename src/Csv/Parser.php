@@ -25,11 +25,17 @@ class Parser implements Arrayable
     /**
      * Convert the CSV file to array.
      *
-     * @return array
+     * @return array<int, array<string, string>>
      */
     public function toArray(): array
     {
-        $rows   = array_map('str_getcsv', file($this->file));
+        $csv = file($this->file);
+
+        if (!$csv) {
+            return [];
+        }
+
+        $rows   = array_map('str_getcsv', $csv);
         $header = array_shift($rows);
         $csv    = array();
 

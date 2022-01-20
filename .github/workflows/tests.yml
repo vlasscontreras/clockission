@@ -3,11 +3,13 @@ name: Tests
 on: [push, pull_request]
 
 jobs:
-  test:
+  ci:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         php: [8.0]
+
+    name: PHP ${{ matrix.php }}
 
     steps:
     - name: Checkout 🛎
@@ -23,9 +25,6 @@ jobs:
       uses: php-actions/composer@v6
       with:
         php_version: ${{ matrix.php }}
-
-    - name: Run linters 👀
-      run: composer lint:phpcs
 
     - name: Run unit tests 🧪
       run: ./vendor/bin/phpunit --testsuite=Unit

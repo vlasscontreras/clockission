@@ -9,7 +9,7 @@ interface Command
     /**
      * Run the command.
      *
-     * @param array $arguments
+     * @param array<int, string> $arguments
      * @return void
      */
     public function run(array $arguments): void;

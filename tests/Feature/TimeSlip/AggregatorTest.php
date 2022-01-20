@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature\TimeSlip;
 
 use PHPUnit\Framework\TestCase;
+use VlassContreras\Clockission\Contracts\MissionSlip;
 use VlassContreras\Clockission\DateTime\Time;
 use VlassContreras\Clockission\TimeSlip\Aggregator;
 
@@ -12,31 +13,34 @@ class AggregatorTest extends TestCase
 {
     /**
      * @dataProvider getSampleTimeSlips
+     * @param array<int, array<string, string>> $timeEntries
      */
-    public function testItMatchesStructure(array $timeEntries)
+    public function testItMatchesStructure(array $timeEntries): void
     {
         $aggregate = new Aggregator($timeEntries);
-        $array = $aggregate->toArray(true);
+        $timeSlips = $aggregate->toArray(true);
 
-        foreach ($array as $entry) {
-            $this->assertArrayHasKey('description', $entry);
-            $this->assertArrayHasKey('date', $entry);
-            $this->assertArrayHasKey('time_logged', $entry);
-            $this->assertArrayHasKey('activity_type', $entry);
-            $this->assertArrayHasKey('team_id', $entry);
+        /** @var array<string, float> $timeSlip */
+        foreach ($timeSlips as $timeSlip) {
+            $this->assertArrayHasKey('description', $timeSlip);
+            $this->assertArrayHasKey('date', $timeSlip);
+            $this->assertArrayHasKey('time_logged', $timeSlip);
+            $this->assertArrayHasKey('activity_type', $timeSlip);
+            $this->assertArrayHasKey('team_id', $timeSlip);
         }
     }
 
     /**
      * @dataProvider getSampleTimeSlips
+     * @param array<int, array<string, string>> $timeEntries
      */
-    public function testItMatchesTotalTime(array $timeEntries)
+    public function testItMatchesTotalTime(array $timeEntries): void
     {
         $aggregate = new Aggregator($timeEntries);
-        $array = $aggregate->toArray(true);
+        $timeSlips = $aggregate->toArray(true);
         $sum = array_sum(array_map(function ($time) {
             return Time::hourMinuteToDecimal($time);
-        }, array_column($array, 'time_logged')));
+        }, array_column($timeSlips, 'time_logged')));
 
         // Based on data provider.
         $this->assertEquals(17.9, $sum);
@@ -45,14 +49,15 @@ class AggregatorTest extends TestCase
 
     /**
      * @dataProvider getSampleTimeSlips
+     * @param array<int, array<string, string>> $timeEntries
      */
-    public function testItUnifiesEntriesWithSameTypeDescriptionTime(array $timeEntries)
+    public function testItUnifiesEntriesWithSameTypeDescriptionTime(array $timeEntries): void
     {
         $aggregate = new Aggregator($timeEntries);
-        $array = $aggregate->toArray(true);
-        $counts = array_count_values(array_column($array, 'description'));
+        $timeSlips = $aggregate->toArray(true);
+        $counts = array_count_values(array_column($timeSlips, 'description'));
 
-        $this->assertEquals(6, count($array));
+        $this->assertEquals(6, count($timeSlips));
         $this->assertEquals(3, $counts['PS-7777']); // Tracked in 3 different days.
         $this->assertEquals(2, $counts['PS-9999']); // Tracked in 2 different days.
         $this->assertEquals(1, $counts['Stand-up meeting']); // Tracked in 1 day only.
@@ -60,53 +65,56 @@ class AggregatorTest extends TestCase
 
     /**
      * @dataProvider getSampleTimeSlips
+     * @param array<int, array<string, string>> $timeEntries
      */
-    public function testItMatchesExpectedTypeDescriptionTime(array $timeEntries)
+    public function testItMatchesExpectedTypeDescriptionTime(array $timeEntries): void
     {
         $aggregate = new Aggregator($timeEntries);
-        $array = $aggregate->toArray(true);
+
+        /** @var MissionSlip[] $timeSlips */
+        $timeSlips = $aggregate->toArray();
 
         // #1 Based on data provider.
-        $this->assertEquals('Production', $array[0]['activity_type']);
-        $this->assertEquals('PS-9999', $array[0]['description']);
-        $this->assertEquals('2022-01-11', $array[0]['date']);
-        $this->assertEquals('5:42', $array[0]['time_logged']);
+        $this->assertEquals('Production', $timeSlips[0]->getActivityType());
+        $this->assertEquals('PS-9999', $timeSlips[0]->getDescription());
+        $this->assertEquals('2022-01-11', $timeSlips[0]->getDate());
+        $this->assertEquals('5:42', $timeSlips[0]->getTimeLogged());
 
         // #2 Based on data provider.
-        $this->assertEquals('Planning', $array[1]['activity_type']);
-        $this->assertEquals('Stand-up meeting', $array[1]['description']);
-        $this->assertEquals('2022-01-11', $array[1]['date']);
-        $this->assertEquals('0:30', $array[1]['time_logged']);
+        $this->assertEquals('Planning', $timeSlips[1]->getActivityType());
+        $this->assertEquals('Stand-up meeting', $timeSlips[1]->getDescription());
+        $this->assertEquals('2022-01-11', $timeSlips[1]->getDate());
+        $this->assertEquals('0:30', $timeSlips[1]->getTimeLogged());
 
         // #3 Based on data provider.
-        $this->assertEquals('Production', $array[2]['activity_type']);
-        $this->assertEquals('PS-7777', $array[2]['description']);
-        $this->assertEquals('2022-01-11', $array[2]['date']);
-        $this->assertEquals('0:42', $array[2]['time_logged']);
+        $this->assertEquals('Production', $timeSlips[2]->getActivityType());
+        $this->assertEquals('PS-7777', $timeSlips[2]->getDescription());
+        $this->assertEquals('2022-01-11', $timeSlips[2]->getDate());
+        $this->assertEquals('0:42', $timeSlips[2]->getTimeLogged());
 
         // #4 Based on data provider.
-        $this->assertEquals('Production', $array[3]['activity_type']);
-        $this->assertEquals('PS-7777', $array[3]['description']);
-        $this->assertEquals('2022-01-17', $array[3]['date']);
-        $this->assertEquals('1:30', $array[3]['time_logged']);
+        $this->assertEquals('Production', $timeSlips[3]->getActivityType());
+        $this->assertEquals('PS-7777', $timeSlips[3]->getDescription());
+        $this->assertEquals('2022-01-17', $timeSlips[3]->getDate());
+        $this->assertEquals('1:30', $timeSlips[3]->getTimeLogged());
 
         // #5 Based on data provider.
-        $this->assertEquals('Production', $array[4]['activity_type']);
-        $this->assertEquals('PS-7777', $array[4]['description']);
-        $this->assertEquals('2022-01-18', $array[4]['date']);
-        $this->assertEquals('7:30', $array[4]['time_logged']);
+        $this->assertEquals('Production', $timeSlips[4]->getActivityType());
+        $this->assertEquals('PS-7777', $timeSlips[4]->getDescription());
+        $this->assertEquals('2022-01-18', $timeSlips[4]->getDate());
+        $this->assertEquals('7:30', $timeSlips[4]->getTimeLogged());
 
         // #6 Based on data provider.
-        $this->assertEquals('Production', $array[5]['activity_type']);
-        $this->assertEquals('PS-9999', $array[5]['description']);
-        $this->assertEquals('2022-01-18', $array[5]['date']);
-        $this->assertEquals('2:00', $array[5]['time_logged']);
+        $this->assertEquals('Production', $timeSlips[5]->getActivityType());
+        $this->assertEquals('PS-9999', $timeSlips[5]->getDescription());
+        $this->assertEquals('2022-01-18', $timeSlips[5]->getDate());
+        $this->assertEquals('2:00', $timeSlips[5]->getTimeLogged());
     }
 
     /**
      * Get the sample time slips.
      *
-     * @return array
+     * @return array<int, array<int, array<int, array<string, float|string>>>>
      */
     public function getSampleTimeSlips(): array
     {
