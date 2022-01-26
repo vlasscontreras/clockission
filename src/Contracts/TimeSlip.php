@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\Contracts;
 
-interface MissionSlip extends Arrayable
+interface TimeSlip extends Arrayable
 {
     /**
      * Get the time slip activity type

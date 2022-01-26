@@ -11,7 +11,7 @@ use GuzzleHttp\Cookie\CookieJarInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
-use VlassContreras\Clockission\Contracts\MissionSlip;
+use VlassContreras\Clockission\Contracts\TimeSlip;
 
 class Client
 {
@@ -81,12 +81,12 @@ class Client
     /**
      * Push a time slip.
      *
-     * @param MissionSlip $timeSlip
+     * @param TimeSlip $timeSlip
      * @param int $timeCardId
      * @return ResponseInterface
      * @throws GuzzleException
      */
-    public function pushTimeSlip(MissionSlip $timeSlip, int $timeCardId): ResponseInterface
+    public function pushTimeSlip(TimeSlip $timeSlip, int $timeCardId): ResponseInterface
     {
         return $this->client->request('POST', '/platform/time_slips', [
             'headers' => [

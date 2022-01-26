@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\TimeSlip;
+namespace VlassContreras\Clockission\Mission;
 
 use VlassContreras\Clockission\Config\Config;
-use VlassContreras\Clockission\Contracts\ClockifyEntry;
+use VlassContreras\Clockission\Contracts\TimeEntry;
 use VlassContreras\Clockission\DateTime\Date;
 use VlassContreras\Clockission\DateTime\Time;
 
@@ -49,9 +49,9 @@ class TimeEntryAdapter extends TimeSlip
     /**
      * Set up time entry
      *
-     * @param ClockifyEntry $entry
+     * @param TimeEntry $entry
      */
-    public function __construct(ClockifyEntry $entry)
+    public function __construct(TimeEntry $entry)
     {
         $this->date = Date::toIso8601Date($entry->getDate());
         $this->timeLogged = Time::decimalToHourMinute($entry->getHours());

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\TimeEntry;
+namespace VlassContreras\Clockission\Clockify;
 
-use VlassContreras\Clockission\Contracts\ClockifyEntry;
+use VlassContreras\Clockission\Contracts\TimeEntry as TimeEntryContract;
 
-class TimeEntry implements ClockifyEntry
+class TimeEntry implements TimeEntryContract
 {
     /**
      * Set up time entry

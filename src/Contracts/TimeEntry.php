@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\Contracts;
 
-interface ClockifyEntry extends Arrayable
+interface TimeEntry extends Arrayable
 {
     /**
      * Get the time entry description

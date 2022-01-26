@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\TimeSlip;
+namespace VlassContreras\Clockission\Mission;
 
 use InvalidArgumentException;
 use VlassContreras\Clockission\Contracts\Arrayable;
-use VlassContreras\Clockission\Contracts\MissionSlip;
+use VlassContreras\Clockission\Contracts\TimeSlip;
 use VlassContreras\Clockission\DateTime\Time;
-use VlassContreras\Clockission\TimeEntry\TimeEntry;
+use VlassContreras\Clockission\Clockify\TimeEntry;
 
 class Aggregator implements Arrayable
 {
     /**
      * Time entries
      *
-     * @var MissionSlip[]
+     * @var TimeSlip[]
      */
     protected array $timeSlips = [];
 
@@ -64,10 +64,10 @@ class Aggregator implements Arrayable
      *
      * It is determined by the description and activity type.
      *
-     * @param MissionSlip $slip
-     * @return MissionSlip|false
+     * @param TimeSlip $slip
+     * @return TimeSlip|false
      */
-    protected function exists(MissionSlip $slip): MissionSlip|false
+    protected function exists(TimeSlip $slip): TimeSlip|false
     {
         foreach ($this->timeSlips as $timeSlip) {
             $descriptionMatch = $timeSlip->getDescription() === $slip->getDescription();
@@ -85,10 +85,10 @@ class Aggregator implements Arrayable
     /**
      * Push a time slip to the main array.
      *
-     * @param MissionSlip $timeSlip
+     * @param TimeSlip $timeSlip
      * @return void
      */
-    protected function pushSlip(MissionSlip $timeSlip): void
+    protected function pushSlip(TimeSlip $timeSlip): void
     {
         $this->timeSlips[] = $timeSlip;
     }
@@ -96,12 +96,12 @@ class Aggregator implements Arrayable
     /**
      * Update the time logged of a time slip.
      *
-     * @param MissionSlip $slip
+     * @param TimeSlip $slip
      * @param float $timeToAdd
      * @return void
      * @throws InvalidArgumentException
      */
-    protected function updateSlipTimeLogged(MissionSlip $slip, float $timeToAdd): void
+    protected function updateSlipTimeLogged(TimeSlip $slip, float $timeToAdd): void
     {
         $slip->setTimeLogged(
             Time::addDecimalToHour(
@@ -118,14 +118,14 @@ class Aggregator implements Arrayable
      */
     public function oldest(): void
     {
-        usort($this->timeSlips, function (MissionSlip $a, MissionSlip $b) {
+        usort($this->timeSlips, function (TimeSlip $a, TimeSlip $b) {
             return $a->getDate() <=> $b->getDate();
         });
     }
 
     /**
      * @inheritDoc
-     * @return MissionSlip[]|array<int, array<int|string>>
+     * @return TimeSlip[]|array<int, array<int|string>>
      */
     public function toArray(bool $deep = false): array
     {
@@ -133,7 +133,7 @@ class Aggregator implements Arrayable
             return $this->timeSlips;
         }
 
-        return array_map(function (MissionSlip $timeSlip) {
+        return array_map(function (TimeSlip $timeSlip) {
             return $timeSlip->toArray();
         }, $this->timeSlips);
     }
