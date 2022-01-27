@@ -104,7 +104,7 @@ class TimeSlip implements TimeSlipContract
     public function validateActivityType(string $activityType): string
     {
         if (!in_array($activityType, ActivityType::cases())) {
-            throw new InvalidArgumentException('Invalid activity type');
+            throw new InvalidArgumentException("Invalid activity type: {$activityType}");
         }
 
         return $activityType;
