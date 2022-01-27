@@ -48,7 +48,7 @@ class TimeSlipTest extends TestCase
     public function testItValidatesActivityType(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid activity type');
+        $this->expectExceptionMessage('Invalid activity type: Invalid Type');
 
         new TimeSlip('Invalid Type', 'PS-9999', '', null, null);
     }
