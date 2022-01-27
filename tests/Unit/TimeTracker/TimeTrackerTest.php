@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\TimeSlip;
+namespace Tests\Unit\TimeTracker;
 
 use PHPUnit\Framework\TestCase;
 use VlassContreras\Clockission\TimeTracker\TimeTracker;

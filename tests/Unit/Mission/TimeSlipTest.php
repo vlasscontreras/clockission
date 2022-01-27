@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\TimeSlip;
+namespace Tests\Unit\Mission;
 
 use PHPUnit\Framework\TestCase;
-use VlassContreras\Clockission\TimeSlip\TimeSlip;
+use VlassContreras\Clockission\Mission\TimeSlip;
 
 class TimeSlipTest extends TestCase
 {
@@ -48,7 +48,7 @@ class TimeSlipTest extends TestCase
     public function testItValidatesActivityType(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Invalid activity type');
+        $this->expectExceptionMessage('Invalid activity type: Invalid Type');
 
         new TimeSlip('Invalid Type', 'PS-9999', '', null, null);
     }

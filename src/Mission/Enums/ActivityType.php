@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\TimeSlip\Enums;
+namespace VlassContreras\Clockission\Mission\Enums;
 
 use VlassContreras\Clockission\Enums\Enum;
 

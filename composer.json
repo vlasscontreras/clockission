@@ -30,11 +30,6 @@
         }
     ],
     "minimum-stability": "stable",
-    "scripts": {
-        "lint:phpcs": [
-            "vendor/bin/phpcs . --standard=PSR12 --extensions=php --ignore=vendor/"
-        ]
-    },
     "config": {
         "platform": {
             "php": "8.0"

@@ -6,14 +6,17 @@ namespace VlassContreras\Clockission\Mission\Commands;
 
 use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\Command;
-use VlassContreras\Clockission\Contracts\MissionSlip;
+use VlassContreras\Clockission\Contracts\TimeSlip;
 use VlassContreras\Clockission\Csv\Parser;
 use VlassContreras\Clockission\Mission\Client;
-use VlassContreras\Clockission\TimeSlip\Aggregator;
+use VlassContreras\Clockission\Mission\Aggregator;
 use VlassContreras\Clockission\TimeTracker\TimeTracker;
 
 class UploadSlips implements Command
 {
+    /**
+     * @inheritDoc
+     */
     public function run(array $arguments): void
     {
         $timeTracker = new TimeTracker(true);
@@ -30,7 +33,7 @@ class UploadSlips implements Command
 
         $client->authenticate();
 
-        /** @var MissionSlip[] */
+        /** @var TimeSlip[] */
         $timeSlips = $timeSlips->toArray();
 
         foreach ($timeSlips as $timeSlip) {

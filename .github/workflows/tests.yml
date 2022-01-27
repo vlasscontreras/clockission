@@ -27,7 +27,7 @@ jobs:
         php_version: ${{ matrix.php }}
 
     - name: Run unit tests 🧪
-      run: ./vendor/bin/phpunit --testsuite=Unit
+      run: ./vendor/bin/phpunit --testsuite=unit
 
-    - name: Run feature tests 🧪
-      run: ./vendor/bin/phpunit --testsuite=Feature
+    - name: Run integration tests 🧪
+      run: ./vendor/bin/phpunit --testsuite=integration

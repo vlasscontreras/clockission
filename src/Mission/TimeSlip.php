@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace VlassContreras\Clockission\TimeSlip;
+namespace VlassContreras\Clockission\Mission;
 
 use InvalidArgumentException;
-use VlassContreras\Clockission\Contracts\MissionSlip;
-use VlassContreras\Clockission\TimeSlip\Enums\ActivityType;
+use VlassContreras\Clockission\Contracts\TimeSlip as TimeSlipContract;
+use VlassContreras\Clockission\Mission\Enums\ActivityType;
 
-class TimeSlip implements MissionSlip
+class TimeSlip implements TimeSlipContract
 {
     /**
      * Activity type
@@ -104,16 +104,14 @@ class TimeSlip implements MissionSlip
     public function validateActivityType(string $activityType): string
     {
         if (!in_array($activityType, ActivityType::cases())) {
-            throw new InvalidArgumentException('Invalid activity type');
+            throw new InvalidArgumentException("Invalid activity type: {$activityType}");
         }
 
         return $activityType;
     }
 
     /**
-     * Convert time entry to array.
-     *
-     * @return array<string, int|string>
+     * @inheritDoc
      */
     public function toArray(): array
     {
