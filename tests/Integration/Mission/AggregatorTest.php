@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\Mission;
+namespace Tests\Integration\Mission;
 
 use PHPUnit\Framework\TestCase;
 use VlassContreras\Clockission\Contracts\TimeSlip;
