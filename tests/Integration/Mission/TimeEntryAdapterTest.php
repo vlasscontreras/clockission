@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\TimeSlip;
+namespace Tests\Integration\Mission;
 
 use PHPUnit\Framework\TestCase;
-use VlassContreras\Clockission\Contracts\MissionSlip;
-use VlassContreras\Clockission\TimeEntry\TimeEntry;
-use VlassContreras\Clockission\TimeSlip\TimeEntryAdapter;
+use VlassContreras\Clockission\Contracts\TimeSlip;
+use VlassContreras\Clockission\Clockify\TimeEntry;
+use VlassContreras\Clockission\Mission\TimeEntryAdapter;
 
 class TimeEntryAdapterTest extends TestCase
 {
@@ -16,7 +16,7 @@ class TimeEntryAdapterTest extends TestCase
         $timeEntry = new TimeEntry('Production: PS-9999', '01/11/2022', 8.5);
         $timeSlip = new TimeEntryAdapter($timeEntry);
 
-        $this->assertInstanceOf(MissionSlip::class, $timeSlip);
+        $this->assertInstanceOf(TimeSlip::class, $timeSlip);
         $this->assertEquals('Production', $timeSlip->getActivityType());
         $this->assertEquals('PS-9999', $timeSlip->getDescription());
         $this->assertEquals('2022-01-11', $timeSlip->getDate());

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\Contracts;
 
-interface ClockifyEntry extends Arrayable
+interface TimeEntry extends Arrayable
 {
     /**
      * Get the time entry description
@@ -26,4 +26,11 @@ interface ClockifyEntry extends Arrayable
      * @return float
      */
     public function getHours(): float;
+
+    /**
+     * Convert time entry to array.
+     *
+     * @return array<string, string|float>
+     */
+    public function toArray(): array;
 }

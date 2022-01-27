@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset>
+    <!--
+    #############################################################################
+    COMMAND LINE ARGUMENTS
+    https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+    #############################################################################
+    -->
+
+    <!-- Pass some flags to PHPCS:
+        p flag: Show progress of the run.
+        s flag: Show sniff codes in all reports.
+        v flag: Print processed files.
+    -->
+    <arg value="psv"/>
+
+    <!-- Check up to 8 files simultaneously. -->
+    <arg name="parallel" value="8"/>
+
+    <!-- Check PHP files. -->
+    <arg name="extensions" value="php,cm"/>
+
+    <!-- Check all files in this directory and the directories below it. -->
+    <file>.</file>
+
+    <!-- Exclude patterns. -->
+    <exclude-pattern>/vendor/*</exclude-pattern>
+
+    <!--
+    #############################################################################
+    USE THE PSR-12 RULESET
+    #############################################################################
+    -->
+
+    <rule ref="PSR12"/>
+</ruleset>

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Feature\TimeSlip;
+namespace Tests\Integration\Mission;
 
 use PHPUnit\Framework\TestCase;
-use VlassContreras\Clockission\Contracts\MissionSlip;
+use VlassContreras\Clockission\Contracts\TimeSlip;
 use VlassContreras\Clockission\DateTime\Time;
-use VlassContreras\Clockission\TimeSlip\Aggregator;
+use VlassContreras\Clockission\Mission\Aggregator;
 
 class AggregatorTest extends TestCase
 {
@@ -71,7 +71,7 @@ class AggregatorTest extends TestCase
     {
         $aggregate = new Aggregator($timeEntries);
 
-        /** @var MissionSlip[] $timeSlips */
+        /** @var TimeSlip[] $timeSlips */
         $timeSlips = $aggregate->toArray();
 
         // #1 Based on data provider.

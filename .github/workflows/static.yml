@@ -27,7 +27,7 @@ jobs:
         php_version: ${{ matrix.php }}
 
     - name: Run linters 👀
-      run: composer lint:phpcs
+      run: ./vendor/bin/phpcs
 
   phpstan:
     runs-on: ubuntu-latest
