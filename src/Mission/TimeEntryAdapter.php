@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace VlassContreras\Clockission\Mission;
 
+use InvalidArgumentException;
 use VlassContreras\Clockission\Config\Config;
 use VlassContreras\Clockission\Contracts\TimeEntry;
 use VlassContreras\Clockission\DateTime\Date;
@@ -26,28 +27,28 @@ class TimeEntryAdapter extends TimeSlip
     protected string $description;
 
     /**
-     * Entry date
+     * Slip date
      *
      * @var string|null
      */
     protected ?string $date;
 
     /**
-     * Entry hours
+     * Slip hours
      *
      * @var string|null
      */
     protected ?string $timeLogged;
 
     /**
-     * Entry team ID
+     * Slip team ID
      *
      * @var int|null
      */
     protected ?int $teamId = 0;
 
     /**
-     * Set up time entry
+     * Set up time slip
      *
      * @param TimeEntry $entry
      */
@@ -70,7 +71,7 @@ class TimeEntryAdapter extends TimeSlip
         preg_match('/^(.[^:]+): (.*)$/', $description, $matches);
 
         if (count($matches) !== 3) {
-            throw new \InvalidArgumentException('Invalid description format. Expected: "type: description"');
+            throw new InvalidArgumentException('Invalid description format. Expected: "type: description"');
         }
 
         $this->activityType = $this->validateActivityType($matches[1]);

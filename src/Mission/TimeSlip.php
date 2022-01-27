@@ -111,9 +111,7 @@ class TimeSlip implements TimeSlipContract
     }
 
     /**
-     * Convert time entry to array.
-     *
-     * @return array<string, int|string>
+     * @inheritDoc
      */
     public function toArray(): array
     {

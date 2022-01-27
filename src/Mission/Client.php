@@ -165,7 +165,7 @@ class Client
         );
 
         if (!isset($matches[1])) {
-            throw new \RuntimeException('Could not find authenticity token');
+            throw new RuntimeException('Could not find authenticity token');
         }
 
         return $matches[1];
@@ -187,7 +187,7 @@ class Client
         );
 
         if (!isset($matches[1])) {
-            throw new \RuntimeException('Could not find the CSRF token');
+            throw new RuntimeException('Could not find the CSRF token');
         }
 
         return $matches[1];

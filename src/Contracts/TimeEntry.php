@@ -26,4 +26,11 @@ interface TimeEntry extends Arrayable
      * @return float
      */
     public function getHours(): float;
+
+    /**
+     * Convert time entry to array.
+     *
+     * @return array<string, string|float>
+     */
+    public function toArray(): array;
 }

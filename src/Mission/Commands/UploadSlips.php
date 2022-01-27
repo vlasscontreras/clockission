@@ -14,6 +14,9 @@ use VlassContreras\Clockission\TimeTracker\TimeTracker;
 
 class UploadSlips implements Command
 {
+    /**
+     * @inheritDoc
+     */
     public function run(array $arguments): void
     {
         $timeTracker = new TimeTracker(true);

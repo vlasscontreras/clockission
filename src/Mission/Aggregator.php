@@ -13,7 +13,7 @@ use VlassContreras\Clockission\Clockify\TimeEntry;
 class Aggregator implements Arrayable
 {
     /**
-     * Time entries
+     * Time slips
      *
      * @var TimeSlip[]
      */

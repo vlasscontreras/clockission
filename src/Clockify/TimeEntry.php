@@ -60,9 +60,7 @@ class TimeEntry implements TimeEntryContract
     }
 
     /**
-     * Convert time entry to array.
-     *
-     * @return array<string, string|float>
+     * @inheritDoc
      */
     public function toArray(): array
     {
